@@ -1,9 +1,12 @@
 ---
 layout: default
-title: Alex Shneyderman - Personal Pages
+title: Alex Shneyderman
 ---
-
-Hello, there!
-=============
-
-These are me personal pages. Content is coming here soon.
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>
