@@ -15,21 +15,14 @@
   <body>
     <div id="container">
       <div class="inner">
-        <header>
-          <a href="/about.html">ABOUT</a> ::
-          <a href="/contact.html">CONTACT</a>
-        </header>
-
+        {{ page.title }}
         <hr>
-
         <section id="main_content">
           {{ content }}
         </section>
-
         <footer>
-          This site is maintained by <a href="http://github.com/ashneyderman">Alex Shneyderman</a>.
+          This site is maintained by <a href="http://github.com/ashneyderman">Alex Shneyderman</a>
         </footer>
-
       </div>
     </div>
   </body>
