@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Plug Inside Out (WIP)
+title: Plug Inside Out
 comments: true
 ---
 
