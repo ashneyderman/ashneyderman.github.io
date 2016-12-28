@@ -154,8 +154,8 @@ which is what's needed for retries. The solution to this with the plug itself
 might be to design a custom [`Plug.Adapters.Cowboy.Handler`] [cowboy_handler].
 It will let us retry the logic of the chain but it does not let us control how
 deep the retry plug can be positioned in the chain. The details of this solution
-cross the bounds of [`Plug`] [plug_behaviour] therefore I am skipping any further
-discussion.
+cross the bounds of [`Plug`] [plug_behaviour] behavior therefore I am skipping
+any further discussion.
 
 In my next post I will describe a design with more flexible chaining.
 
