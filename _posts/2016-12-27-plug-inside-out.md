@@ -143,16 +143,21 @@ defp run_before_send(%Conn{before_send: before_send} = conn, new) do
 end
 {% endhighlight %}
 
-So before the actual response is sent out to the client we can hook up a `before_send`
-function that accepts and returns [`Plug.Conn`] [plug_conn]. That will let us
-modify or/and inspect the result right before it is sent out to the client. This
-certainly helps with the case of timing the request execution but it does not help
-with retries since fundamental plug interface has been defined to accept
-[`Plug.Conn`] [plug_conn] and not the next interceptor in the chain which is what's
-needed for retries. The solution to this with the plug itself might be to design a
-custom [`Plug.Adapters.Cowboy.Handler`] [cowboy_handler]. The details of this cross
-the bounds of [`Plug`] [plug_behaviour] therefore I am skipping that discussion.
+before any response is sent out to the client [`Plug`] [plug] will reduce [`Plug.Conn`]
+[plug_conn] over a collection of `before_send` functions. We can hook up a `before_send`
+function that accepts and returns modified [`Plug.Conn`] [plug_conn]. Any modifications
+to the result sent to the client can be done in a `before_send`
+function. This certainly helps with the case of timing the request execution but
+it does not help with retries since fundamental plug interface has been defined
+to accept [`Plug.Conn`] [plug_conn] and not the next interceptor in the chain
+which is what's needed for retries. The solution to this with the plug itself
+might be to design a custom [`Plug.Adapters.Cowboy.Handler`] [cowboy_handler].
+It will let us retry the logic of the chain but it does not let us control how
+deep the retry plug can be positioned in the chain. The details of this solution
+cross the bounds of [`Plug`] [plug_behaviour] therefore I am skipping any further
+discussion.
 
+In my next post I will describe a design with more flexible chaining.
 
 [plug]: https://hex.pm/packages/plug "Plug"
 [plug_conn]: https://github.com/elixir-lang/plug/blob/master/lib/plug/conn.ex "Plug.Conn"
